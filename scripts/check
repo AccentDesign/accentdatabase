@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+# mypy accentdatabase
+flake8 accentdatabase tests
+black accentdatabase tests --check
+isort accentdatabase tests --check-only

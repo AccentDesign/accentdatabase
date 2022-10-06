@@ -1,0 +1,8 @@
+aiosqlite
+asyncpg
+fastapi[all]
+greenlet
+httpx
+pytest_asyncio
+sqlalchemy
+uvicorn

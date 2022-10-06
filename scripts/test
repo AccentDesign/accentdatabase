@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+# Check README.md is up to date
+pytest --cov=accentdatabase --cov=tests --cov-report=term-missing:skip-covered --cov-report=xml tests ${@}

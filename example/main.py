@@ -8,7 +8,9 @@ environ.setdefault(
 from typing import List
 
 import uvicorn
-from accentdatabase import engine, get_session, Base
+from accentdatabase.base import Base
+from accentdatabase.engine import engine
+from accentdatabase.session import get_session
 from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from sqlalchemy import select

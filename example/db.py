@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String
 
-from accentdatabase import Base
+from accentdatabase.base import Base
 
 
 class Item(Base):

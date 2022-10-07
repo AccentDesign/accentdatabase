@@ -10,8 +10,10 @@ import contextlib
 
 import pytest
 import pytest_asyncio
-from accentdatabase import engine, get_session, Base
+from accentdatabase.base import Base
 from accentdatabase.config import config
+from accentdatabase.engine import engine
+from accentdatabase.session import get_session
 from accentdatabase.testing import recreate_postgres_database
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession

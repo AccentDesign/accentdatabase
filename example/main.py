@@ -1,5 +1,6 @@
 # isort: off
 from os import environ
+from uuid import UUID
 
 environ.setdefault(
     "DATABASE_URL", "postgresql+asyncpg://postgres:password@localhost:5433/db"
@@ -32,7 +33,7 @@ class ItemIn(BaseModel):
 
 
 class ItemOut(ItemIn):
-    id: int
+    id: UUID
 
     class Config:
         orm_mode = True

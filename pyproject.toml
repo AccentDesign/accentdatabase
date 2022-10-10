@@ -38,6 +38,16 @@ dev = [
     "flake8",
 ]
 
+[tool.flit.sdist]
+include = [
+    "accentdatabase/"
+]
+exclude = [
+    "example/",
+    "scripts/",
+    "tests/",
+]
+
 [tool.isort]
 profile = "black"
 known_third_party = []

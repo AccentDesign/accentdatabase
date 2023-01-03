@@ -37,6 +37,9 @@ dev = [
     "autoflake",
     "flake8",
 ]
+alembic = [
+    "alembic",
+]
 
 [tool.flit.sdist]
 include = [

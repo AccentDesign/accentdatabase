@@ -25,6 +25,7 @@ app = FastAPI()
 @app.on_event("startup")
 async def startup_event():
     async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
 
@@ -32,8 +33,9 @@ class ItemIn(BaseModel):
     name: str
 
 
-class ItemOut(ItemIn):
+class ItemOut(BaseModel):
     id: UUID
+    name: str
 
     class Config:
         orm_mode = True
@@ -44,11 +46,14 @@ async def items(
     session: AsyncSession = Depends(get_session),
 ):
     qs = select(Item)
-    return (await session.execute(qs)).scalars().all()
+    return list(await session.scalars(qs))
 
 
 @app.post("/items", response_model=ItemOut)
-async def add_item(item: ItemIn, session: AsyncSession = Depends(get_session)):
+async def add_item(
+    item: ItemIn,
+    session: AsyncSession = Depends(get_session),
+):
     instance = Item(**item.dict())
     session.add(instance)
     await session.commit()

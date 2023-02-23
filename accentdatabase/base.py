@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer
-from sqlalchemy.orm import as_declarative, declared_attr
+from sqlalchemy.orm import Mapped, as_declarative, declared_attr, mapped_column
 
 
 @as_declarative()
@@ -18,5 +17,5 @@ class Base:
     """
 
     @declared_attr
-    def id(self):
-        return Column(Integer, primary_key=True)
+    def id(self) -> Mapped[int]:
+        return mapped_column(primary_key=True)

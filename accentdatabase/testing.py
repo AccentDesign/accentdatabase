@@ -18,7 +18,10 @@ async def recreate_postgres_database(
     )
     test_db = database_url.split("/")[-1]
 
-    engine = create_async_engine(maintenance_url, isolation_level="AUTOCOMMIT")
+    engine = create_async_engine(
+        maintenance_url,
+        isolation_level="AUTOCOMMIT",
+    )
 
     async with engine.begin() as conn:
         # drop the test database

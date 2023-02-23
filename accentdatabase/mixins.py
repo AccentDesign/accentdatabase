@@ -1,6 +1,6 @@
-from sqlalchemy import Column, text
+from sqlalchemy import text
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import declarative_mixin
+from sqlalchemy.orm import Mapped, declarative_mixin, mapped_column
 
 
 @declarative_mixin
@@ -19,7 +19,7 @@ class UUIDMixin:
 
     """
 
-    id = Column(
+    id: Mapped[UUID] = mapped_column(
         UUID(as_uuid=True),
         primary_key=True,
         server_default=text("gen_random_uuid()"),

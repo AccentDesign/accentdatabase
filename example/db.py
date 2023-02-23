@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column
 
 from accentdatabase.base import Base
 from accentdatabase.mixins import UUIDMixin
@@ -7,4 +8,4 @@ from accentdatabase.mixins import UUIDMixin
 class Item(UUIDMixin, Base):
     __tablename__ = "items"
 
-    name = Column(String(50), nullable=False, unique=True)
+    name: Mapped[str] = mapped_column(String(50), unique=True)

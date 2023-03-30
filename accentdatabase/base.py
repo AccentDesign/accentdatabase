@@ -1,8 +1,7 @@
-from sqlalchemy.orm import Mapped, as_declarative, declared_attr, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column
 
 
-@as_declarative()
-class Base:
+class Base(DeclarativeBase):
     """
     Base class all tables to inherit from
     https://docs.sqlalchemy.org/en/latest/orm/mapping_api.html#sqlalchemy.orm.declarative_base

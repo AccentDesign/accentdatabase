@@ -12,14 +12,14 @@ async def recreate_postgres_database(
     """Drop and recreate test database, requires min of postgres v13"""
 
     maintenance_url = deepcopy(database_url)
-    maintenance_url = maintenance_url.replace(
+    maintenance_url_str = str(maintenance_url).replace(
         maintenance_url.path,
         f"/{maintenance_db}",
     )
-    test_db = database_url.split("/")[-1]
+    test_db = str(database_url).split("/")[-1]
 
     engine = create_async_engine(
-        maintenance_url,
+        maintenance_url_str,
         isolation_level="AUTOCOMMIT",
     )
 

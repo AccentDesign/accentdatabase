@@ -13,7 +13,7 @@ from accentdatabase.base import Base
 from accentdatabase.engine import engine
 from accentdatabase.session import get_session
 from fastapi import FastAPI, Depends
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -34,11 +34,10 @@ class ItemIn(BaseModel):
 
 
 class ItemOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: UUID
     name: str
-
-    class Config:
-        orm_mode = True
 
 
 @app.get("/items", response_model=List[ItemOut])
@@ -54,7 +53,7 @@ async def add_item(
     item: ItemIn,
     session: AsyncSession = Depends(get_session),
 ):
-    instance = Item(**item.dict())
+    instance = Item(**item.model_dump())
     session.add(instance)
     await session.commit()
     return instance

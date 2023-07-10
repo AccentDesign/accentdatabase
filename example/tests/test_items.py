@@ -11,7 +11,7 @@ async def test_is_shared_session(db_session, client):
     url = "/items"
     response = await client.get(url)
     assert response.status_code == 200
-    assert response.json() == [{"id": instance.id, "name": "steve"}]
+    assert response.json() == [{"id": str(instance.id), "name": "steve"}]
 
 
 @pytest.mark.asyncio

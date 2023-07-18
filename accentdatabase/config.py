@@ -9,7 +9,7 @@ class AppConfig(BaseSettings):
 
     url: Union[PostgresDsn, str]
     future: bool = True
-    json_serializer: ImportString = "accentdatabase.encoders.json_serializer"
+    json_serializer: ImportString = "json.dumps"
     echo: bool = False
 
 

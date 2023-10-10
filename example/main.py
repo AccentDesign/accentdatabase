@@ -3,7 +3,7 @@ from os import environ
 from uuid import UUID
 
 environ.setdefault(
-    "DATABASE_URL", "postgresql+asyncpg://postgres:password@localhost:5433/db"
+    "DATABASE_URL", "postgresql+asyncpg://postgres:password@localhost:5432/db"
 )
 
 from typing import List

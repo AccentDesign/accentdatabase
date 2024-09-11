@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "accentdatabase"
@@ -28,46 +28,36 @@ Homepage = "https://github.com/accentdesign/accentdatabase"
 [project.optional-dependencies]
 test = [
     "pytest",
-    "pytest-cov",
-    "mypy",
-    "flake8",
     "black",
-    "isort",
-]
-dev = [
-    "autoflake",
-    "flake8",
+    "ruff",
 ]
 alembic = [
     "alembic",
 ]
 
-[tool.flit.sdist]
+[tool.black]
+line-length = 88
+
+[tool.hatch.build.targets.sdist]
 include = [
     "accentdatabase/"
 ]
 exclude = [
     "example/",
-    "scripts/",
     "tests/",
 ]
 
-[tool.isort]
-profile = "black"
-known_third_party = []
+[tool.hatch.version]
+path = "accentdatabase/__init__.py"
 
-[tool.mypy]
-strict = true
-
-[[tool.mypy.overrides]]
-module = "accentdatabase.tests.*"
-ignore_missing_imports = true
-check_untyped_defs = true
-
-[tool.pytest.ini_options]
-addopts = [
-  "--strict-config",
-  "--strict-markers",
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = [
+    "E501",
 ]
-xfail_strict = true
-filterwarnings = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true

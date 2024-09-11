@@ -17,19 +17,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
         with:
-          python-version: ${{ matrix.python-version }}
-      - uses: actions/cache@v4
-        id: cache
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v02
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: bash scripts/install
-      - name: Lint
-        run: bash scripts/check
-      - name: Test
-        run: bash scripts/test
+          version: "0.4.9"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install the project
+        run: uv sync --all-extras
+
+      - name: Run linters
+        run: |
+          uv run black --check --diff accentdatabase example tests;
+          uv run ruff check --diff accentdatabase example tests;
+
+      - name: Run tests
+        run: uv run pytest tests

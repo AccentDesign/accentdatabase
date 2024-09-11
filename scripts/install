@@ -1,6 +1,0 @@
-#!/bin/sh -e
-set -x
-
-pip install flit
-flit install --extra alembic,dev,test
-pip install -e .

@@ -17,7 +17,7 @@ classifiers = [
 ]
 dependencies = [
     "pydantic>=2.0.1,<2.10.0",
-    "pydantic-settings>=2.0.1,<2.6.0",
+    "pydantic-settings>=2.0.1,<2.7.0",
     "sqlalchemy>=2.0.0,<2.1.0",
 ]
 dynamic = ["version", "description"]
@@ -28,15 +28,11 @@ Homepage = "https://github.com/accentdesign/accentdatabase"
 [project.optional-dependencies]
 test = [
     "pytest",
-    "black",
     "ruff",
 ]
 alembic = [
     "alembic",
 ]
-
-[tool.black]
-line-length = 88
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -50,11 +46,12 @@ exclude = [
 [tool.hatch.version]
 path = "accentdatabase/__init__.py"
 
+[tool.ruff]
+line-length = 88
+
 [tool.ruff.lint]
 select = ["E", "F", "I"]
-ignore = [
-    "E501",
-]
+ignore = []
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]

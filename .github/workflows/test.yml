@@ -19,9 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v2
-        with:
-          version: "0.4.16"
+        uses: astral-sh/setup-uv@v3
 
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
@@ -31,7 +29,7 @@ jobs:
 
       - name: Run linters
         run: |
-          uv run black --check --diff accentdatabase example tests;
+          uv run ruff format --check accentdatabase example tests;
           uv run ruff check --diff accentdatabase example tests;
 
       - name: Run tests

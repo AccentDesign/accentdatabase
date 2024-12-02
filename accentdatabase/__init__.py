@@ -3,4 +3,4 @@ Handling sqlalchemy connection and test helpers including
 declarative base, session, engine and mixins
 """
 
-__version__ = "0.0.18"
+__version__ = "0.0.19"

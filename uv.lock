@@ -3,7 +3,7 @@ requires-python = ">=3.9"
 
 [[package]]
 name = "accentdatabase"
-version = "0.0.18"
+version = "0.0.19"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
@@ -24,7 +24,7 @@ test = [
 requires-dist = [
     { name = "alembic", marker = "extra == 'alembic'" },
     { name = "pydantic", specifier = ">=2.0.1,<2.11.0" },
-    { name = "pydantic-settings", specifier = ">=2.0.1,<2.7.0" },
+    { name = "pydantic-settings", specifier = ">=2.0.1,<2.8.0" },
     { name = "pytest", marker = "extra == 'test'" },
     { name = "ruff", marker = "extra == 'test'" },
     { name = "sqlalchemy", specifier = ">=2.0.0,<2.1.0" },
